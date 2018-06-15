@@ -1,5 +1,9 @@
 import React from "react";
 
+import CartList from "./CartList"
+import CartSummary from "./CartSummary"
+
+
 export default class Cart extends React.Component {
     constructor(props) {
         super(props)
@@ -45,7 +49,7 @@ export default class Cart extends React.Component {
         return (
             <div>
                 <h2>Cart</h2>
-                
+
                 <button onClick={this.addItem}>
                     Add Item
                 </button>
@@ -55,6 +59,12 @@ export default class Cart extends React.Component {
                 <button onClick={this.dummyRefresh}>
                     Refresh
                 </button>
+
+                <CartList   items={this.state.items}>
+                </CartList>
+
+                <CartSummary>
+                </CartSummary>
             </div>
         )
     }

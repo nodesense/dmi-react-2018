@@ -9,6 +9,7 @@ export default class CartSummary extends React.Component {
         console.log("CartSummary Render ");
         return (
             <div>
+                <h2>Cart Summary</h2>
                 <p>Amount: {this.props.amount} </p>
                 <p>Total Items: {this.props.count} </p>
             </div>

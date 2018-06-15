@@ -1,5 +1,7 @@
 import React from "react";
 
+import CartItem from "./CartItem"
+
 export default class CartList extends React.Component {
     constructor(props) {
         super(props)
@@ -7,8 +9,13 @@ export default class CartList extends React.Component {
   
     render() {
         console.log("CartList Render ");
+        
+        let items = this.props.items;
+
         return (
             <div>
+                <h2>Cart List</h2>
+
                <table>
                    <thead>
                        <tr>
@@ -21,7 +28,13 @@ export default class CartList extends React.Component {
                    </thead>
 
                    <tbody>
-                       
+
+                       {
+                           items.map( item => (
+                               <CartItem item={item} />
+                           ))
+                       }
+
                    </tbody>
                </table>
             </div>
