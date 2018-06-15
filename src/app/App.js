@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 
+import Cart from "./cart/components/Cart";
+
 // App is parent
 // Header and Footer are child component
 // Data => parent to child (props)
@@ -16,6 +18,8 @@ class App extends Component {
     return (
       <div  >
           <Header title="Product App" />
+
+          <Cart />
 
           <Home />
 
