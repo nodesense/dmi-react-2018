@@ -19,12 +19,12 @@ export default class CartItem extends React.Component {
                <td>
                         {item.qty}
                 </td>
-               <td>{item.qty * item.total}</td>
+               <td>{item.qty * item.price}</td>
                <td> 
-                    <button onClick={""}>
+                    <button onClick={ () => {} }>
                         Update
                    </button>
-                   <button onClick={""}>
+                   <button onClick={ () => {} }>
                         Delete
                    </button>
                </td>

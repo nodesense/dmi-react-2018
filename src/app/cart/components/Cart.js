@@ -5,14 +5,26 @@ import CartSummary from "./CartSummary"
 
 
 export default class Cart extends React.Component {
+     // Creation Cycle 1
     constructor(props) {
         super(props)
 
         this.state = {
             items: [
                 {id: 1, name: "Product 1", price: 100, qty: 1}
-            ]
+            ],
+            amount: 0,
+            count: 0
         }
+        console.log("Cart Created")
+
+    }
+
+    // creation life cycle 2
+    componentWillMount() {
+        console.log("Cart will mount")
+        // pre-compute
+        this.recalculate()
     }
 
     //Es.NEXT 
@@ -25,6 +37,21 @@ export default class Cart extends React.Component {
             price: 1 + Math.ceil(Math.random() * 100),
             qty: 1
         }
+
+        // Mutablity vs Immutablity
+        //BAD, mutation
+        //this.state.items.push(item)
+
+        //items.push (item) ==> mutable
+        // items = [...items, item] => immutable
+
+        //GOOD
+        let items = [...this.state.items, item]
+
+        this.setState({
+            items
+        })
+
     }
   
     removeItem = (id) => {
@@ -39,6 +66,27 @@ export default class Cart extends React.Component {
         
     }
 
+    // amount, count to be recalculated
+    recalculate() {
+        let items = this.state.items;
+
+        let amount =0,
+            count = 0;
+
+        for (let item of items) {
+            amount += item.price * item.qty;
+            count += item.qty;
+        }
+
+        this.setState({
+            // amount: amount,
+            // count: count
+            amount,
+            count
+        })
+
+    }
+
     dummyRefresh = () => {
         this.setState({
             flag: true
@@ -46,6 +94,8 @@ export default class Cart extends React.Component {
     }
 
     render() {
+        console.log("Cart render")
+
         return (
             <div>
                 <h2>Cart</h2>
@@ -63,7 +113,9 @@ export default class Cart extends React.Component {
                 <CartList   items={this.state.items}>
                 </CartList>
 
-                <CartSummary>
+                <CartSummary amount={this.state.amount}
+                             count={this.state.count}   
+                >
                 </CartSummary>
             </div>
         )
