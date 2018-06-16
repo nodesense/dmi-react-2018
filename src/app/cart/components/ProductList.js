@@ -17,9 +17,9 @@ export default class ProductList extends React.Component {
         this.setState({loading: true})
 
         Promise.all([
-            fetch("http://localhost:7070/delayed/api/products")
+            fetch("http://localhost:7070/api/products")
             .then ( (response) => response.json()),
-            fetch("http://localhost:7070/delayed/api/brands")
+            fetch("http://localhost:7070/api/brands")
             .then ( (response) => response.json())
         ])
         .then (results => {
