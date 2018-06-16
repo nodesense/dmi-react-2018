@@ -1,6 +1,9 @@
 import React from "react";
 
-export default class CartItem extends React.Component {
+// Pure component, implments shouldComponentUpdate
+// it compare props and state
+
+export default class CartItem extends React.PureComponent {
     constructor(props) {
         super(props)
 

@@ -7,6 +7,13 @@ export default class CartList extends React.Component {
         super(props)
     }
   
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("cart list should update")
+
+        return this.props.items != nextProps.items
+    }
+
+
     render() {
         console.log("CartList Render ");
         
