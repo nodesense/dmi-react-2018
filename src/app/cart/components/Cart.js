@@ -77,7 +77,17 @@ export default class Cart extends React.Component {
     }
 
     updateItem = (id, qty) => {
-        
+        console.log(id, qty)
+        let items = this.state.items.map( item => {
+            if (item.id == id) {
+                return {...item, qty: qty}
+            } else {
+                return item
+            }
+        })
+
+        this.setState({items})
+        this.recalculate(items)
     }
 
     empty = () => {
@@ -174,7 +184,8 @@ export default class Cart extends React.Component {
                 </div>
 
                 <CartList   items={this.state.items}
-                            removeItem={this.removeItem}    
+                            removeItem={this.removeItem} 
+                            updateItem={this.updateItem}   
                 >
                 </CartList>
 

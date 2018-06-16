@@ -34,6 +34,7 @@ export default class CartList extends React.Component {
                                <CartItem item={item} 
                                          key={item.id} 
                                          removeItem={this.props.removeItem}
+                                         updateItem={this.props.updateItem}
                                          />
                            ))
                        }

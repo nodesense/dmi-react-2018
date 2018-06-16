@@ -4,9 +4,18 @@ export default class CartItem extends React.Component {
     constructor(props) {
         super(props)
 
+        // Initialize state from props
         this.state = {
-
+            qty: props.item.qty
         }
+    }
+
+    updateQty = (e) => {
+        let input = e.target
+
+        this.setState({
+            qty: parseInt(input.value) || 0
+        })
     }
   
     render() {
@@ -17,11 +26,14 @@ export default class CartItem extends React.Component {
                <td>{item.name}</td>
                <td>{item.price}</td>
                <td>
-                        {item.qty}
+                    <input value={this.state.qty} 
+                           onChange={this.updateQty} 
+                    />
                 </td>
                <td>{item.qty * item.price}</td>
                <td> 
-                    <button onClick={ () => {} }>
+                    <button onClick={ () => this.props
+                                            .updateItem(item.id, this.state.qty)} >
                         Update
                    </button>
                    <button onClick={ () =>  this.props.removeItem(item.id) }>
