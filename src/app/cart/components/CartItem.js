@@ -20,6 +20,10 @@ export default class CartItem extends React.PureComponent {
             qty: parseInt(input.value) || 0
         })
     }
+
+    componentDidMount() {
+        this.qtyCtrl.focus()
+    }
   
     render() {
         let item = this.props.item;
@@ -31,6 +35,7 @@ export default class CartItem extends React.PureComponent {
                <td>
                     <input value={this.state.qty} 
                            onChange={this.updateQty} 
+                           ref = { (elem) => this.qtyCtrl = elem}
                     />
                 </td>
                <td>{item.qty * item.price}</td>
