@@ -3,6 +3,30 @@ import React from "react";
 import CartList from "./CartList"
 import CartSummary from "./CartSummary"
 
+import { Button, Alert, DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
+
+
+const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger'];
+
+function renderDropdownButton(title, i) {
+  return (
+    <DropdownButton
+      bsStyle={title.toLowerCase()}
+      title={title}
+      key={i}
+      id={`dropdown-basic-${i}`}
+    >
+      <MenuItem eventKey="1">Action</MenuItem>
+      <MenuItem eventKey="2">Another action</MenuItem>
+      <MenuItem eventKey="3" active>
+        Active Item
+      </MenuItem>
+      <MenuItem divider />
+      <MenuItem eventKey="4">Separated link</MenuItem>
+    </DropdownButton>
+  );
+}
+
 
 export default class Cart extends React.Component {
      // Creation Cycle 1
@@ -164,22 +188,39 @@ export default class Cart extends React.Component {
     render() {
         console.log("Cart render", this.state)
 
+
+        const buttonsInstance = (
+            <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
+        );
+        
         return (
             <div>
                 <h2>Cart</h2>
 
-                <button onClick={this.addItem}>
+                        <div className="alert alert-success" role="alert">
+                          Saved Successfully
+                        </div>
+
+                        <Alert bsStyle="success">
+                            <strong>Saved Successfully</strong>  
+                            </Alert>
+
+                        {buttonsInstance}
+
+                <Button onClick={this.addItem}>
                     Add Item
-                </button>
-                <button onClick={this.empty}>
+                </Button>
+
+                <Button onClick={this.empty}>
                     Empty
-                </button>
+                </Button>
+ 
 
                 <div  onClick={this.dummyRefresh3}>
                 <div  onClick={this.dummyRefresh2}>
-                <button onClick={this.dummyRefresh}>
+                <Button onClick={this.dummyRefresh}>
                     Refresh
-                </button>
+                </Button>
                 </div>
                 </div>
 

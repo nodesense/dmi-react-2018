@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 
 import Cart from "./cart/components/Cart";
+import ProductList from "./cart/components/ProductList";
 
 // App is parent
 // Header and Footer are child component
@@ -18,6 +19,9 @@ class App extends Component {
     return (
       <div  >
           <Header title="Product App" />
+      
+          <ProductList />
+          
 
           <Cart />
 

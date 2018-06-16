@@ -1,6 +1,21 @@
 import React from "react";
 
-export default class CartSummary extends React.Component {
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const styles = theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing.unit * 2,
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  });
+
+class CartSummary extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -33,11 +48,22 @@ export default class CartSummary extends React.Component {
     render() {
         console.log("CartSummary Render ");
         return (
-            <div>
+            <div className={this.props.classes.root}>
                 <h2>Cart Summary</h2>
-                <p>Amount: {this.props.amount} </p>
-                <p>Total Items: {this.props.count} </p>
+  
+                
+                <Grid container spacing={24}>
+                    <Grid item xs={12} sm={6}>
+                    <Paper className={this.props.classes.paper}>Amount: {this.props.amount} </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <Paper className={this.props.classes.paper}>Total Items: {this.props.count}</Paper>
+                    </Grid>
+                </Grid>
+
             </div>
         )
     }
 }
+
+export default withStyles(styles)(CartSummary);
