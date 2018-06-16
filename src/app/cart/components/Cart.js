@@ -13,8 +13,13 @@ export default class Cart extends React.Component {
             items: [
                 {id: 1, name: "Product 1", price: 100, qty: 1}
             ],
+
+            // Derived data, from items
             amount: 0,
-            count: 0
+            count: 0,
+
+            message: '',
+            flag: true
         }
         console.log("Cart Created")
 
@@ -24,7 +29,7 @@ export default class Cart extends React.Component {
     componentWillMount() {
         console.log("Cart will mount")
         // pre-compute
-        this.recalculate()
+        this.recalculate(this.state.items)
     }
 
     //Es.NEXT 
@@ -45,17 +50,30 @@ export default class Cart extends React.Component {
         //items.push (item) ==> mutable
         // items = [...items, item] => immutable
 
-        //GOOD
+        //GOOD, immutable
         let items = [...this.state.items, item]
 
+        // setState is async
         this.setState({
             items
+        }, () => {
+            // called after render
+            console.log("Add item set state callback")
+            // this.recalculate()
         })
 
+        this.recalculate(items)
     }
   
     removeItem = (id) => {
-        
+        console.log("ID is ", id)
+
+        let items = this.state
+                        .items.filter(item => item.id != id)
+
+        this.setState({items})
+        this.recalculate(items)
+
     }
 
     updateItem = (id, qty) => {
@@ -63,12 +81,16 @@ export default class Cart extends React.Component {
     }
 
     empty = () => {
-        
+        this.setState( (prevState, props) => {
+            return {items: [], 
+                    count: 0, 
+                    amount: 0};
+          });
     }
 
     // amount, count to be recalculated
-    recalculate() {
-        let items = this.state.items;
+    recalculate(items) {
+        //let items = this.state.items;
 
         let amount =0,
             count = 0;
@@ -87,14 +109,50 @@ export default class Cart extends React.Component {
 
     }
 
-    dummyRefresh = () => {
+
+    dummyRefresh2 = () => {
+        console.log("Refresh2 called")
         this.setState({
-            flag: true
+            temp: 10
         })
     }
 
+    dummyRefresh3 = () => {
+        console.log("Refresh3 called")
+        this.setState({
+            temp3: 30
+        })
+    }
+
+
+    dummyRefresh = () => {
+        console.log("Refresh called")
+        this.setState({
+            flag: true
+        })
+
+        this.setState({
+            message: 'Refreshing now 1'
+        })
+
+        this.setState({
+            flag: false
+        })
+
+        this.setState({
+            message: 'Refreshing done'
+        })
+
+    }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("Next State ", nextState)
+    //     console.log("Current State", this.state)
+    //     return true;
+    // }
+
     render() {
-        console.log("Cart render")
+        console.log("Cart render", this.state)
 
         return (
             <div>
@@ -106,11 +164,18 @@ export default class Cart extends React.Component {
                 <button onClick={this.empty}>
                     Empty
                 </button>
+
+                <div  onClick={this.dummyRefresh3}>
+                <div  onClick={this.dummyRefresh2}>
                 <button onClick={this.dummyRefresh}>
                     Refresh
                 </button>
+                </div>
+                </div>
 
-                <CartList   items={this.state.items}>
+                <CartList   items={this.state.items}
+                            removeItem={this.removeItem}    
+                >
                 </CartList>
 
                 <CartSummary amount={this.state.amount}

@@ -31,7 +31,10 @@ export default class CartList extends React.Component {
 
                        {
                            items.map( item => (
-                               <CartItem item={item} key={item.id} />
+                               <CartItem item={item} 
+                                         key={item.id} 
+                                         removeItem={this.props.removeItem}
+                                         />
                            ))
                        }
 

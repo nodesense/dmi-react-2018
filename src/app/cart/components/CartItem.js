@@ -24,7 +24,7 @@ export default class CartItem extends React.Component {
                     <button onClick={ () => {} }>
                         Update
                    </button>
-                   <button onClick={ () => {} }>
+                   <button onClick={ () =>  this.props.removeItem(item.id) }>
                         Delete
                    </button>
                </td>
