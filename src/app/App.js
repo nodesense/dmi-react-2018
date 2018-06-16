@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+
+import {BrowserRouter, 
+        Switch,
+        Route
+      } from 'react-router-dom';
+
 import './App.css';
 
 import Header from "./components/Header";
@@ -17,19 +23,25 @@ class App extends Component {
     console.log("App render")
 
     return (
+      <BrowserRouter>
       <div  >
           <Header title="Product App" />
-      
+
+          <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/products" component={ProductList} />
+              <Route path="/cart" component={Cart} />
+          </Switch>
+
+{/*       
           <ProductList />
-          
-
           <Cart />
-
-          <Home />
+           <Home /> */}
 
           <Footer title="Product App" 
                   year={2018} />
       </div>
+      </BrowserRouter>
     );
   }
 }

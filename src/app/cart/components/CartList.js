@@ -2,16 +2,16 @@ import React from "react";
 
 import CartItem from "./CartItem"
 
-export default class CartList extends React.Component {
+export default class CartList extends React.PureComponent {
     constructor(props) {
         super(props)
     }
   
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("cart list should update")
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("cart list should update")
 
-        return this.props.items != nextProps.items
-    }
+    //     return this.props.items != nextProps.items
+    // }
 
 
     render() {

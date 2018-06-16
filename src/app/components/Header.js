@@ -1,5 +1,7 @@
 import React from "react";
 
+import {NavLink} from 'react-router-dom';
+
 //create object, calls render to get v.dom
 export default class Header extends React.Component {
     
@@ -16,10 +18,15 @@ export default class Header extends React.Component {
         let title = this.props.title;
 
         return (
-            <div>
-                <h1> {title} </h1>
-                <hr />
-            </div>
+<div>
+    <h1> {title} </h1>
+
+    <NavLink to="/" className="button">Home</NavLink>
+    <NavLink to="/products" className="button">Products</NavLink>
+    <NavLink to="/cart" className="button">Cart</NavLink>
+    
+    <hr />
+</div>
         )
     }
 }
