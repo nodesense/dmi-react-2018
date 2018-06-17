@@ -1,4 +1,6 @@
-import {createStore} from "redux";
+import {createStore, combineReducers} from "redux";
+
+import cartReducer from "./redux-cart/state/cartReducer";
 
 const INITIAL_STATE = 0
 
@@ -12,8 +14,15 @@ function counterReducer(state=INITIAL_STATE, action) {
         default:
             return state
     }
-}
+}   
 
-const store = createStore(counterReducer)
+
+const rootReducer = combineReducers({
+    // stateName: function
+    counter: counterReducer,
+    items: cartReducer
+})
+
+const store = createStore(rootReducer)
 
 export default store;

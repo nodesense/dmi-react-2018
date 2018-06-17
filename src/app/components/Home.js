@@ -11,6 +11,7 @@ export default class Home extends React.Component {
  
     }
 
+
     incr() {
         let action = {
             type: 'INCREMENT',
@@ -52,9 +53,8 @@ export default class Home extends React.Component {
      }
 
     render() {
-        
-        //FIXME
-        let likes = store.getState();
+         
+        let likes = store.getState().counter;
 
         console.log("Home Render ", likes)
 

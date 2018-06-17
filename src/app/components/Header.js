@@ -24,7 +24,7 @@ export default class Header extends React.Component {
     <NavLink to="/" className="button">Home</NavLink>
     <NavLink to="/products" className="button">Products</NavLink>
     <NavLink to="/cart" className="button">Cart</NavLink>
-    
+    <NavLink to="/redux-cart" className="button">Redux Cart</NavLink>
     <hr />
 </div>
         )

@@ -14,6 +14,10 @@ import Home from "./components/Home";
 // import Cart from "./cart/components/Cart";
 import ProductList from "./cart/components/ProductList";
 
+// ** import from container NOT component
+import ReduxCart from "./redux-cart/containers/Cart";
+
+
 import Loadable from 'react-loadable';
 
 function Loading() {
@@ -44,6 +48,9 @@ class App extends Component {
               <Route path="/" exact component={Home} />
               <Route path="/products" component={ProductList} />
               <Route path="/cart" component={LoadableCartComponent} />
+              <Route path="/redux-cart" component={ReduxCart} />
+          
+          
           </Switch>
 
 {/*       
