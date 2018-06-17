@@ -22,7 +22,7 @@ import Loadable from 'react-loadable';
 
 function Loading() {
     return (
-        <div><h2>Loading......</h2></div>
+        <div><h2>Loading.....</h2></div>
     )
 }
 const LoadableCartComponent = Loadable({
