@@ -225,7 +225,7 @@ export default class Cart extends React.Component {
                 </div>
 
                 <CartList   items={this.state.items}
-                            removeItem={this.removeItem} 
+                            removeItem={(id) => this.removeItem(id)} 
                             updateItem={this.updateItem}   
                 >
                 </CartList>

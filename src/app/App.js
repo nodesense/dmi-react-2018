@@ -11,8 +11,21 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 
-import Cart from "./cart/components/Cart";
+// import Cart from "./cart/components/Cart";
 import ProductList from "./cart/components/ProductList";
+
+import Loadable from 'react-loadable';
+
+function Loading() {
+    return (
+        <div><h2>Loading......</h2></div>
+    )
+}
+const LoadableCartComponent = Loadable({
+  loader: () => import('./cart/components/Cart'),
+  loading: Loading,
+});
+
 
 // App is parent
 // Header and Footer are child component
@@ -30,7 +43,7 @@ class App extends Component {
           <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/products" component={ProductList} />
-              <Route path="/cart" component={Cart} />
+              <Route path="/cart" component={LoadableCartComponent} />
           </Switch>
 
 {/*       
